@@ -76,6 +76,7 @@ function main() {
   container.style.display = 'flex';
   container.style.flexDirection = 'column';
   container.style.width = '30vw';
+  container.style.height = '90vh';
   container.style.margin = 'auto';
   content1.style.marginTop = '50px';
   button.textContent = 'Get Pokemon!';
@@ -92,6 +93,7 @@ function main() {
   selectEl.style.border = 'none';
   selectEl.style.paddingLeft = '10px';
   image.style.width = '90%';
+  image.style.height = '70%';
 }
 
 main();
