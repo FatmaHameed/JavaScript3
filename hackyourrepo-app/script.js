@@ -82,9 +82,20 @@ function main() {
 
   // 6- create function to add repo info
 
-  function addRepoInfo(repo) {
+  function addRepoInfo(repo, repoDescription) {
+    let { description } = repo;
+    function checkDescription() {
+      if (description == null) {
+        description = '';
+      } else {
+        description = repo.description;
+      }
+      return description;
+    }
+    repoDescription = checkDescription();
+    // console.log(repoDescription);
     content.innerHTML = `<h5>Repository: <a href='${repo.html_url}'><span>${repo.name}</span></a></h5>
-    <h5>Description: <span>${repo.description}</span></h5>
+    <h5>Description: <span>${repoDescription}</span></h5>
     <h5>Forks: <span>${repo.forks_count}</span></h5>
     <h5>Updated: <span>${repo.updated_at}</span></h5>`;
   }
@@ -94,6 +105,23 @@ function main() {
   function addOptionToSelectEl() {
     fetchData(url).then(data => {
       let options;
+      const sortedData = () => {
+        function compare(a, b) {
+          const dataA = a.name.toUpperCase();
+          const dataB = b.name.toUpperCase();
+          let comparison = 0;
+          if (dataA > dataB) {
+            comparison = 1;
+          } else if (dataA < dataB) {
+            comparison = -1;
+          }
+          return comparison;
+        }
+        return data.sort(compare);
+      };
+
+      data = sortedData();
+      // console.log(data);
       data.forEach(repo => {
         options += `<option value = "${repo.name}">${repo.name}</option>`;
         selectEl.innerHTML = options;
