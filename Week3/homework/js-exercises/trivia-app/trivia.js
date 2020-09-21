@@ -20,8 +20,8 @@ function main() {
     let questionsLiEl;
     data.results.forEach(result => {
       const { question } = result;
-
       const correctAnswer = result.correct_answer;
+
       // Decode special characters appeared in the data that fetched(using jquery)
       const parsedQuestion = $('<textarea />')
         .html(question)
