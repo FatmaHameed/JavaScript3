@@ -1,0 +1,31 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+div {
+  padding: 3rem;
+}
+div p {
+  padding-top: 1rem;
+}
+ul {
+  background-color: lightblue;
+
+  margin: 2rem 0;
+}
+li {
+  background-color: lightblue;
+  list-style: none;
+  padding: 1rem;
+  cursor: pointer;
+}
+li:hover {
+  background-color: rgb(100, 148, 211);
+}
+ul div {
+  background-color: white;
+  padding: 1rem;
+  font-weight: bold;
+  display: none;
+}
