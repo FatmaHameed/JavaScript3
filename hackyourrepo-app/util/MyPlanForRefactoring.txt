@@ -1,0 +1,32 @@
+1- Seperate the DOM Elements into the following:
+ a) header
+ b)body
+ c)footer
+How?
+create elements and create appendchild function
+seperate create text to dom function
+
+2- Seperate fetchData function => rewrite it using async/await
+create seperate file for error div
+
+
+3- create function to sort the data
+4- create function to add options to select elements
+5- create function to add contributors info to div
+6- create class for pagination
+7- import all functions to the script.js and use them with data
+
+
+How many js files I need?
+1- header file
+2- body file
+3- footer
+4-appendchild function
+5- add text to DOM
+6- Fetch Data function
+7- Error file
+9- sorted data file
+9- add option file
+10 - add contributors file
+11- pagination file
+12 main file
