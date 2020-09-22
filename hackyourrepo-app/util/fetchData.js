@@ -1,4 +1,4 @@
-import { displayError } from './displayError.js';
+// Refactoring Fetch Data function to Async/Await
 
 export async function fetchData(url) {
   try {
@@ -6,6 +6,6 @@ export async function fetchData(url) {
     const data = await response.json();
     return data;
   } catch (error) {
-    displayError();
+    console.log(error);
   }
 }

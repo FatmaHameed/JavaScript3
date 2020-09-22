@@ -1,4 +1,4 @@
-import { fetchData } from './fetchData.js';
+// import { fetchData } from './fetchData.js';
 
 export function addRepoInfo(repo, repoDescription) {
   let { description } = repo;
@@ -12,7 +12,7 @@ export function addRepoInfo(repo, repoDescription) {
   }
   repoDescription = checkDescription();
   // console.log(repoDescription);
-  content.innerHTML = `<h5>Repository: <a href='${repo.html_url}'><span>${repo.name}</span></a></h5>
+  content.innerHTML = `<h5>Repository: <a href='${repo.html_url}' target="_blank"><span>${repo.name}</span></a></h5>
   <h5>Description: <span>${repoDescription}</span></h5>
   <h5>Forks: <span>${repo.forks_count}</span></h5>
   <h5>Updated: <span>${repo.updated_at}</span></h5>`;
