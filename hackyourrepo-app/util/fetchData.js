@@ -9,3 +9,4 @@ export async function fetchData(url) {
     console.log(error);
   }
 }
+export const errorMessage = `<div id ="error">Network Request Failed</div>`;
