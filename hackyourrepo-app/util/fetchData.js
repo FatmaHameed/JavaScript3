@@ -1,4 +1,5 @@
 // Refactoring Fetch Data function to Async/Await
+import { contentWrapper } from './globalVariables.js';
 
 export async function fetchData(url) {
   try {
@@ -6,7 +7,7 @@ export async function fetchData(url) {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error);
+    contentWrapper.innerHTML = `<div id ="error">Network Request Failed</div>`;
   }
 }
 export const errorMessage = `<div id ="error">Network Request Failed</div>`;
