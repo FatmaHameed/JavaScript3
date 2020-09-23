@@ -10,7 +10,7 @@ import {
   appendChildToDOMElement,
 } from './appendChildAndAddText.js';
 
-import { displayDataOnChange } from './displayDataOnChangeAndAddContributor.js';
+import { changeReboInfo } from './displayDataOnChangeAndAddContributor.js';
 import { addOptionToSelectEl } from './addRepoInfoAndOptions.js';
 import {
   container,
@@ -52,7 +52,8 @@ function main() {
   appendChildToDOMElement(contributorsText, contributorsDiv);
   document.body.appendChild(footer);
   addOptionToSelectEl();
-  displayDataOnChange(selectEl);
+  // displayDataOnChange(selectEl);
+  selectEl.addEventListener('change', changeReboInfo);
   addOptionToSelectEl();
 }
 window.addEventListener('load', main);

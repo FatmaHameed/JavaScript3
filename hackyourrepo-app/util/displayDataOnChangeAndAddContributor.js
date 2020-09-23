@@ -4,7 +4,6 @@ import { appendChildToDOMElement } from './appendChildAndAddText.js';
 
 import {
   container,
-  selectEl,
   contentWrapper,
   contributors,
   contributorsDiv,
@@ -21,38 +20,36 @@ export function addContributorsContent(
   return `<div class="contributor-content box">
 <h5 class="flex"><img src='${imageSrc}' alt ="${imageInfo}" class ="avatar-img"><a href='${contribGitHup}' target= "_blank"><span>${contribLogin} </span></a><span>${contributions}</span></h5></div>`;
 }
-export function displayDataOnChange() {
-  selectEl.addEventListener('change', event => {
-    try {
-      fetchData(url).then(repoData => {
-        repoData.forEach(repo => {
-          const repoName = repo.name;
-          const contributorsURL = repo.contributors_url;
+export const changeReboInfo = async event => {
+  try {
+    const fetchURL = await fetchData(url);
+    const fetchedData = await fetchURL;
+    fetchedData.forEach(async repo => {
+      const repoName = await repo.name;
+      const contributorsURL = await repo.contributors_url;
+      if (repoName === event.target.value) {
+        addRepoInfo(repo);
+        const fetchURL2 = await fetchData(contributorsURL);
+        const contributorsData = await fetchURL2;
+        let contributorContent = '';
+        contributorsData.forEach(async contributor => {
           if (repoName === event.target.value) {
-            addRepoInfo(repo);
-            fetchData(contributorsURL).then(contributorData => {
-              let contributorContent = '';
-              contributorData.forEach(contributor => {
-                if (repoName === event.target.value) {
-                  contributorContent += addContributorsContent(
-                    contributor.avatar_url,
-                    contributor.login,
-                    contributor.html_url,
-                    contributor.login,
-                    contributor.contributions,
-                  );
-                }
-              });
-              contributors.innerHTML = contributorContent;
-            });
+            contributorContent += addContributorsContent(
+              contributor.avatar_url,
+              contributor.login,
+              contributor.html_url,
+              contributor.login,
+              contributor.contributions,
+            );
           }
-          appendChildToDOMElement(contributors, contributorsDiv);
-          appendChildToDOMElement(contentWrapper, container);
-          appendChildToDOMElement(contributorsDiv, contentWrapper);
+          contributors.innerHTML = contributorContent;
         });
-      });
-    } catch (error) {
-      contentWrapper.innerHTML = `<div id ="error">Network Request Failed</div>`;
-    }
-  });
-}
+      }
+      appendChildToDOMElement(contributors, contributorsDiv);
+      appendChildToDOMElement(contentWrapper, container);
+      appendChildToDOMElement(contributorsDiv, contentWrapper);
+    });
+  } catch (error) {
+    contentWrapper.innerHTML = `<div id ="error">Network Request Failed</div>`;
+  }
+};
