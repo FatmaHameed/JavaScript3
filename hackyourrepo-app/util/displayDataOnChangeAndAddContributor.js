@@ -37,7 +37,7 @@ export const changeReboInfo = async event => {
         addRepoInfo(repo);
         const fetchURL2 = await fetchData(contributorsURL);
         const contributorsData = await fetchURL2;
-        console.log(contributorsData);
+        // console.log(contributorsData);
 
         // start pagination
 

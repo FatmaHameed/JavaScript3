@@ -10,8 +10,6 @@ import {
   url,
 } from './globalVariables.js';
 import { appendChildToDOMElement } from './appendChildAndAddText.js';
-import { setupPaginatation, rows } from './addPagination.js';
-
 export function addRepoInfo(repo, repoDescription) {
   let { description } = repo;
   const checkDescription = () => (repoDescription = repo.description ?? '');
@@ -37,17 +35,14 @@ export function addOptionToSelectEl() {
           addRepoInfo(repo);
           fetchData(repo.contributors_url).then(data => {
             let contributorContent = '';
-            setupPaginatation(data, contributors, rows);
             data.forEach(contributor => {
-              if (repo.name === selectEl.value) {
-                contributorContent += addContributorsContent(
-                  contributor.avatar_url,
-                  contributor.login,
-                  contributor.html_url,
-                  contributor.login,
-                  contributor.contributions,
-                );
-              }
+              contributorContent += addContributorsContent(
+                contributor.avatar_url,
+                contributor.login,
+                contributor.html_url,
+                contributor.login,
+                contributor.contributions,
+              );
             });
             contributors.innerHTML = contributorContent;
           });
