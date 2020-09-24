@@ -10,6 +10,7 @@ import {
   url,
 } from './globalVariables.js';
 import { appendChildToDOMElement } from './appendChildAndAddText.js';
+import { setupPaginatation, rows } from './addPagination.js';
 
 export function addRepoInfo(repo, repoDescription) {
   let { description } = repo;
@@ -23,10 +24,10 @@ export function addRepoInfo(repo, repoDescription) {
   }
   repoDescription = checkDescription();
 
-  content.innerHTML = `<h5>Repository: <a href='${repo.html_url}' target="_blank"><span>${repo.name}</span></a></h5>
+  content.innerHTML = `<div><h5>Repository: <a href='${repo.html_url}' target="_blank"><span>${repo.name}</span></a></h5>
   <h5>Description: <span>${repoDescription}</span></h5>
   <h5>Forks: <span>${repo.forks_count}</span></h5>
-  <h5>Updated: <span>${repo.updated_at}</span></h5>`;
+  <h5>Updated: <span>${repo.updated_at}</span></h5></div>`;
 }
 export function addOptionToSelectEl() {
   try {
@@ -42,6 +43,7 @@ export function addOptionToSelectEl() {
           addRepoInfo(repo);
           fetchData(repo.contributors_url).then(data => {
             let contributorContent = '';
+            setupPaginatation(data, contributors, rows);
             data.forEach(contributor => {
               if (repo.name === selectEl.value) {
                 contributorContent += addContributorsContent(

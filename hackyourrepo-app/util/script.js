@@ -1,6 +1,5 @@
 'use strict';
 
-// document.body.innerHTML = 'hello';
 /*
   Write here your JavaScript for HackYourRepo!
 */
@@ -21,6 +20,8 @@ import {
   content,
   contributorsDiv,
   contributorsText,
+  buttonWrapper2,
+  buttonWrapper,
 } from './globalVariables.js';
 
 function main() {
@@ -33,6 +34,8 @@ function main() {
   content.classList.add('box');
   contributorsDiv.setAttribute('id', 'contributors');
   contributorsDiv.classList.add('flex');
+  buttonWrapper.classList.add('flex');
+  buttonWrapper2.classList.add('buttonWrapper');
   const footer = document.createElement('footer');
   footer.classList.add('navigation', 'box');
   footer.classList.add('navigation', 'box');
@@ -50,6 +53,8 @@ function main() {
   appendChildToDOMElement(contentWrapper, container);
   appendChildToDOMElement(content, contentWrapper);
   appendChildToDOMElement(contributorsText, contributorsDiv);
+  // appendChildToDOMElement(buttonWrapper2, body);
+  container.appendChild(buttonWrapper2);
   document.body.appendChild(footer);
   addOptionToSelectEl();
   // displayDataOnChange(selectEl);

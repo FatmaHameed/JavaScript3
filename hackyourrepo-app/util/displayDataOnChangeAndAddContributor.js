@@ -1,8 +1,14 @@
 import { fetchData } from './fetchData.js';
 import { addRepoInfo } from './addRepoInfoAndOptions.js';
 import { appendChildToDOMElement } from './appendChildAndAddText.js';
-
 import {
+  displayList,
+  setupPaginatation,
+  paginationButton,
+} from './addPagination.js';
+import {
+  buttonWrapper,
+  buttonWrapper2,
   container,
   contentWrapper,
   contributors,
@@ -31,9 +37,31 @@ export const changeReboInfo = async event => {
         addRepoInfo(repo);
         const fetchURL2 = await fetchData(contributorsURL);
         const contributorsData = await fetchURL2;
+        console.log(contributorsData);
+
+        // start pagination
+
         let contributorContent = '';
-        contributorsData.forEach(async contributor => {
-          if (repoName === event.target.value) {
+        const currentPage = 1;
+        const rows = 5;
+        function displayList(
+          contributorsData,
+          contributors,
+          rows,
+          currentPage,
+        ) {
+          contributors.innerHTML = '';
+          currentPage--;
+          const start = rows * currentPage;
+          const end = start + rows;
+          const paginatedData = contributorsData.slice(start, end);
+          for (let i = 0; i < paginatedData.length; i++) {
+            const contributor = paginatedData[i];
+
+            const buttons = paginationButton(i, paginatedData[i]);
+            console.log(buttons);
+
+            buttonWrapper.innerHTML = buttons;
             contributorContent += addContributorsContent(
               contributor.avatar_url,
               contributor.login,
@@ -42,8 +70,15 @@ export const changeReboInfo = async event => {
               contributor.contributions,
             );
           }
+          appendChildToDOMElement(buttonWrapper, buttonWrapper2);
+
           contributors.innerHTML = contributorContent;
-        });
+        }
+
+        displayList(contributorsData, contributors, rows, currentPage);
+
+        setupPaginatation(contributorsData, buttonWrapper, rows);
+        // end Pagination
       }
       appendChildToDOMElement(contributors, contributorsDiv);
       appendChildToDOMElement(contentWrapper, container);
