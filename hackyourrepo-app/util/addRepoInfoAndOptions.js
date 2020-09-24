@@ -14,14 +14,8 @@ import { setupPaginatation, rows } from './addPagination.js';
 
 export function addRepoInfo(repo, repoDescription) {
   let { description } = repo;
-  function checkDescription() {
-    if (description == null) {
-      description = '';
-    } else {
-      description = repo.description;
-    }
-    return description;
-  }
+  const checkDescription = () => (repoDescription = repo.description ?? '');
+
   repoDescription = checkDescription();
 
   content.innerHTML = `<div><h5>Repository: <a href='${repo.html_url}' target="_blank"><span>${repo.name}</span></a></h5>
