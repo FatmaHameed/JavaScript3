@@ -14,20 +14,23 @@ getData('https://randomfox.ca/floof/');
 // Exercise B
 
 const arrayOfWords = ['cucumber', 'tomatos', 'avocado'];
+
 async function makeAllCaps(array) {
+  const capsArray = await array.map(word => {
+    if (typeof word === 'string') {
+      return word.toUpperCase();
+    }
+    throw new Error('Not all items in the array are string!');
+  });
+  return capsArray;
+}
+
+async function promiseCaps() {
   try {
-    const value = await new Promise((resolve, reject) => {
-      const capsArray = array.map(word => {
-        if (typeof word === 'string') {
-          return word.toUpperCase();
-        }
-        reject('Error: Not all items in the array are strings!');
-      });
-      resolve(capsArray);
-    });
-    console.log(value);
+    const result = await makeAllCaps(arrayOfWords);
+    console.log(result);
   } catch (error) {
     console.log(error);
   }
 }
-makeAllCaps(arrayOfWords);
+promiseCaps(arrayOfWords);
