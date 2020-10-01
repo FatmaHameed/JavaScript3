@@ -1,26 +1,17 @@
-import { fetchData, errorMessage } from './fetchData.js';
-import { sortData } from './sortData.js';
-import { addContributorsContent } from './displayDataOnChangeAndAddContributor.js';
+import { fetchData, errorMessage } from './independentFunctions/fetchData.js';
+import { sortData } from './independentFunctions/sortData.js';
+import { addContributorsContent } from './addContributorContent.js';
 import {
   selectEl,
   contentWrapper,
-  content,
+  // content,
   contributors,
   contributorsDiv,
   url,
 } from './globalVariables.js';
-import { appendChildToDOMElement } from './appendChildAndAddText.js';
-export function addRepoInfo(repo, repoDescription) {
-  let { description } = repo;
-  const checkDescription = () => (repoDescription = repo.description ?? '');
+import { appendChildToDOMElement } from './independentFunctions/appendChild.js';
+import { addRepoInfo } from './addRepoInfo.js';
 
-  repoDescription = checkDescription();
-
-  content.innerHTML = `<div><h5>Repository: <a href='${repo.html_url}' target="_blank"><span>${repo.name}</span></a></h5>
-  <h5>Description: <span>${repoDescription}</span></h5>
-  <h5>Forks: <span>${repo.forks_count}</span></h5>
-  <h5>Updated: <span>${repo.updated_at}</span></h5></div>`;
-}
 export function addOptionToSelectEl() {
   try {
     fetchData(url).then(data => {

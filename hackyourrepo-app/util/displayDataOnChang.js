@@ -1,11 +1,10 @@
-import { fetchData } from './fetchData.js';
-import { addRepoInfo } from './addRepoInfoAndOptions.js';
-import { appendChildToDOMElement } from './appendChildAndAddText.js';
-import {
-  displayList,
-  setupPaginatation,
-  paginationButton,
-} from './addPagination.js';
+import { fetchData } from './independentFunctions/fetchData.js';
+import { addContributorsContent } from './addContributorContent.js';
+import { addRepoInfo } from './addRepoInfo.js';
+import { appendChildToDOMElement } from './independentFunctions/appendChild.js';
+// import { displayList } from './pagination/displayList.js';
+import { setupPaginatation } from './pagination/setupPagination.js';
+import { paginationButton } from './pagination/paginationButton.js';
 import {
   buttonWrapper,
   buttonWrapper2,
@@ -16,16 +15,6 @@ import {
   url,
 } from './globalVariables.js';
 
-export function addContributorsContent(
-  imageSrc,
-  imageInfo,
-  contribGitHup,
-  contribLogin,
-  contributions,
-) {
-  return `<div class="contributor-content box">
-<h5 class="flex"><img src='${imageSrc}' alt ="${imageInfo}" class ="avatar-img"><a href='${contribGitHup}' target= "_blank"><span>${contribLogin} </span></a><span>${contributions}</span></h5></div>`;
-}
 export const changeReboInfo = async event => {
   try {
     const fetchURL = await fetchData(url);

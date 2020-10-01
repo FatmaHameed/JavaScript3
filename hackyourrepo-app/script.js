@@ -4,13 +4,11 @@
   Write here your JavaScript for HackYourRepo!
 */
 
-import {
-  createTextToDOMElement,
-  appendChildToDOMElement,
-} from './appendChildAndAddText.js';
+import { appendChildToDOMElement } from './util/independentFunctions/appendChild.js';
+import { createTextToDOMElement } from './util/independentFunctions/addTextToDOM.js';
 
-import { changeReboInfo } from './displayDataOnChangeAndAddContributor.js';
-import { addOptionToSelectEl } from './addRepoInfoAndOptions.js';
+import { changeReboInfo } from './util/displayDataOnChang.js';
+import { addOptionToSelectEl } from './util/addOptions.js';
 import {
   container,
   header,
@@ -22,7 +20,7 @@ import {
   contributorsText,
   buttonWrapper2,
   buttonWrapper,
-} from './globalVariables.js';
+} from './util/globalVariables.js';
 
 function main() {
   // 1- create DOM Elements

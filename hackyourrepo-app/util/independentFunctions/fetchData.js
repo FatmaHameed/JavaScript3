@@ -1,5 +1,5 @@
 // Refactoring Fetch Data function to Async/Await
-import { contentWrapper } from './globalVariables.js';
+import { contentWrapper } from '../globalVariables.js';
 
 export async function fetchData(url) {
   try {
