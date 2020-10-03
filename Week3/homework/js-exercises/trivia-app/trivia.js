@@ -21,14 +21,15 @@ function main() {
     data.results.forEach(result => {
       const { question } = result;
       const correctAnswer = result.correct_answer;
-
+      function parseText(text) {
+        const parsedText = $('<textarea />') // link that this code was taken from: https://stackoverflow.com/questions/5796718/html-entity-decode
+          .html(text)
+          .text();
+        return parsedText;
+      }
       // Decode special characters appeared in the data that fetched(using jquery)
-      const parsedQuestion = $('<textarea />')
-        .html(question)
-        .text();
-      const parsedCorrectAnswer = $('<textarea />')
-        .html(correctAnswer)
-        .text();
+      const parsedQuestion = parseText(question);
+      const parsedCorrectAnswer = parseText(correctAnswer);
 
       // create li elements and assign their text content to the parsed questions, then append them to ul element
       questionsLiEl = document.createElement('li');

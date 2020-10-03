@@ -5,34 +5,42 @@
 // Abdulkareem has a horse, named Adel. The horse is 15 years old and has the color brown. Usually the horse eats grass or helps transport materials for Abdulkareem.
 
 // And they lived happily ever after!
-class Person {
+
+class Creature {
+  constructor(name, age, work, favoriteFood) {
+    this.name = name;
+    this.age = age;
+    this.work = work;
+    this.favoriteFood = favoriteFood;
+  }
+}
+class Person extends Creature {
   constructor(
     name,
     age,
     city,
-    married,
+    engaged,
     childrenNo,
-    job,
+    work,
     favoriteFood,
-    smokeType,
+    habit,
   ) {
-    this.name = name;
-    this.age = age;
+    super(name);
+    super(age);
     this.city = city;
-    this.married = married;
+    this.engaged = engaged;
     this.childrenNo = childrenNo;
-    this.job = job;
-    this._favoriteFood = favoriteFood;
-    this._smokeType = smokeType;
+    super(work);
+    super(favoriteFood);
+    this.habit = habit;
   }
 
-  hasWife() {
-    if (!this.married || this.married == 'no') {
-      return `${this.name} is not married.`;
+  hasSpouse() {
+    if (!this.engaged || this.engaged == 'no') {
+      return `${this.name} does not have spouse.`;
     }
-    return `${this.name} has wife.`;
+    return `${this.name} has spouse.`;
   }
-
   hasChildren() {
     if (
       !this.childrenNo ||
@@ -40,22 +48,12 @@ class Person {
       this.childrenNo <= 0 ||
       this.childrenNo === '0'
     ) {
-      return `${this.name} does not have children.`;
-    }
-
-    return `${this.name} has ${this.childrenNo} children.`;
-  }
-
-  hasJob() {
-    if (this.job) {
-      return `${this.name} is working as ${this.job}.`;
-    }
-    return `${this.name} does not have job.`;
-  }
-
-  get favoriteFood() {
-    return `${this.name} likes to eat ${this._favoriteFood}`;
-  }
+      return `${this.name} does not have children.`}
+      hasJob() {
+        if (this.work) {
+          return `${this.name} is working as ${this.work}.`;
+        }
+        return `${this.name} does not have job.`}
 }
 const Abdulkareem = new Person(
   'Abdulkareem',
@@ -65,7 +63,7 @@ const Abdulkareem = new Person(
   '0',
   'Constructor worker',
   'dates',
-  'water pipe',
+  'smoke water pipe',
 );
 
 // console.log(Abdulkareem);
@@ -74,14 +72,20 @@ const Abdulkareem = new Person(
 // console.log(Abdulkareem.hasJob());
 // console.log(Abdulkareem.hasChildren());
 // console.log(Abdulkareem.favoriteFood);
-class Horse {
-  constructor(name, age, color, foodType, work) {
-    this.name = name;
-    this.age = age;
+class animal extends Creature {
+  constructor(name, age, color, favoriteFood, work) {
+    super(name);
+    super(age);
     this.color = color;
-    this.foodType = foodType;
-    this.work = work;
+    super(work);
+    super(favoriteFood);
   }
 }
-const Adel = new Horse('Adel', 15, 'brown', 'grass', 'transport material');
-console.log(Adel);
+const horseAdel = new Animal(
+  'Adel',
+  15,
+  'brown',
+  'grass',
+  'transport material',
+);
+console.log(horseAdel);
